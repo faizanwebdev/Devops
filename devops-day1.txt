@@ -1,2 +1,2 @@
-1. Explanation and Understanding of Devops as theory is done
-2. Created aws console account as free tier
+- Explanation and Understanding of Devops as theory is done
+- Created aws console account as free tier
