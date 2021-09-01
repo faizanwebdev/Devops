@@ -1,0 +1,21 @@
+1. Create the linux amazon AMI instance and launch it and connect it using putty and puttygen through ssh
+2. After launching go to root user access using the command (sudo su)
+3. Then check the list of files and directory using (ls) to check which all files and directory are there
+4. Then go to (var) folder to check whether there is (www) folder exist or not as by default it will not be present as it will come as creation after installing httpd apache server
+5. Go back to (root) directory using command (cd) and then run the command (yum install httpd -y) to install the apache webserver
+6. After installation process is complete, you can check the var directory using command (cd /var) and there you can see the new folder or directory that is (www)
+7. Then go to (www) folder as there you can see (html) folder and we have to go inside (html) folder
+8. Inside html folder we have to create html file with content with using command (echo "Whatever content as HTML") > index.html )
+9. After creating html file we can check the directory list using (ls) command and we can see index.html file
+10. Then we have to check the apache server status using command (service httpd status) which will not be running, so for running or starting the httpd server we use the command (service httpd start) which will start the apache.
+11. Then we have to check our instance where the IPv4 address will mentioned and we have to hit that IP in browser.
+12. Initially nothing will be shown in browser as we have not added the http rule in security confuguration. So by going in security group we have to add http rule.
+13. After the http rule has been then we have to restart our apache server using command (service httpd restart). After restart when we check our IP again in browser so we can see our html page
+
+Below are the webserver command:
+sudo su
+yum install httpd -y
+cd /var/www/html
+echo "Content" > index.html
+service httpd status
+service httpd start
