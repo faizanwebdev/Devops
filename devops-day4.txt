@@ -1,0 +1,2 @@
+- Learn the https protocol and port
+- Understanding of the computer or server created in instance and the status check and ways to troubleshoot status check error
