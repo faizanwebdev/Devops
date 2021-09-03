@@ -1,0 +1,2 @@
+- Learn quick instance creation, different regions and availability slots of aws ec2 instance
+- Understanding mobxterm use for accessing linux machine using ssh
