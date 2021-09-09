@@ -1,0 +1,2 @@
+- Learn some of the basic linux commands on aws linux ami
+- Git basic commands
