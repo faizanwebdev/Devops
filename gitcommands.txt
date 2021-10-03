@@ -1,0 +1,17 @@
+git init
+git config --global user.name "Faizan Kazi"
+git config --global user.email "faizanwebev@gmail.com"
+git config list
+git add .
+git add filename
+git commit -m "Commit Message"
+git push origin main/master/branchname
+git remote add origin URL
+git pull origin main/master/branchname
+git log
+git log --oneline
+git log -n #where n is number
+git log --grep "keyword or sentence to search with respect to commit message"
+git show <Commit ID>
+git rm filename
+git clone URL
