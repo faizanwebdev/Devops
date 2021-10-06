@@ -1,0 +1,33 @@
+yum update -y #first to update the OS (amazon OS or redhat OS)
+apt-get update -y #first to update the OS (Ubuntu OS or debian family OS)
+yum install docker -y #to install docker software
+docker info #to check docker software information
+docker --version #to check version
+service docker status #to check status of docker service or docker daemon
+service docker start #to start docker service
+service docker restart #to restart docker service
+service docker stop #to stop docker service
+docker images #to list out all docker images present in system
+docker image ls #same output as above command
+docker ps #to list out running docker container
+docker ps -a #to list out all docker container irrespesctive of it state whether it is running or stop
+docker start <containername> #to start docker container
+docker attach <containername> #to get inside the docker container
+docker stop <containername> #to stop the running docker container
+exit #to stop and comeout of docker container
+docker pull <imagename> #to pull or download the software or image from docker hub
+docker search <imagename> #to search and list out all software or image related to search image from docker hub
+docker rename <containername> <newcontainername> #to rename existing container name
+docker run -it <imagename> /bin/bash #to pull the image and create, start and attach the container
+docker run -it --name <containername> <imagename> /bin/bash #same like above command by giving the name to container
+docker rm <containername> #to delete or remove the container
+docker rmi <imagename> #to delete or remove the image
+docker commit <existingcontainername> <newimagename> #to create image of existing container
+docker build -t <newimagename> .    #to build image with help of Dockerfile
+#########################
+DOCKERFILE commands or rules or variables below:
+FROM <imagename>
+RUN <commands to perform>
+COPY <compy file from base system to newimage and container>
+ENV <to declare enviroment variable>
+WORKDIR <directly go to specific directory of the image and container>
