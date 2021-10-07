@@ -31,3 +31,9 @@ RUN <commands to perform>
 COPY <compy file from base system to newimage and container>
 ENV <to declare enviroment variable>
 WORKDIR <directly go to specific directory of the image and container>
+VOLUME ["path with volumename"] #to declare volume using docker file
+#########################
+docker run -it --name <containername> -v <path along with volumename> <imagename> /bin/bash #to declare volume along with container creation
+docker run -it --name <containername> --privileged=true --volumes-from <containername> <imagename> /bin/bash #to declare and mapping the volume from one container to another container i.e container-to-container volume mapping
+docker run -it --name <containername> -v <path along with volume or directory name>:<path along with volumename> <imagename> /bin/bash #to declare and mapping the volume from host system to container i.e host-to-container volume mapping
+docker inspect <containername> #to see in depth detail and information of container
