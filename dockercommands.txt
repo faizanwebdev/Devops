@@ -37,3 +37,13 @@ docker run -it --name <containername> -v <path along with volumename> <imagename
 docker run -it --name <containername> --privileged=true --volumes-from <containername> <imagename> /bin/bash #to declare and mapping the volume from one container to another container i.e container-to-container volume mapping
 docker run -it --name <containername> -v <path along with volume or directory name>:<path along with volumename> <imagename> /bin/bash #to declare and mapping the volume from host system to container i.e host-to-container volume mapping
 docker inspect <containername> #to see in depth detail and information of container
+docker rm $(docker ps -a -q) #to remove all container
+docker stop $(docker ps -a -q) #to stop all container
+docker rmi $(docker images -q) #to delete all images
+docker rmi -f $(docker images -q) #to forcefully delete all images
+docker run -td --name <containername> -p (host port number for example 80):(container port number for example 80) <imagename> #to create non-interactive container with port (-p denote port, -d denotes daemon or detach). This command will automaticall start the container in background
+docker exec -it <noninteractive containername> /bin/bash #to get inside or to interact with noninteractive container
+docker login #to login into docker hub account
+docker tag <existing imagename> <dockerhubaccountname>/<imagename for dockerhub> #for reserving space for image to push on dockerhub
+docker push <dockerhubaccountname>/<imagename for dockerhub to be push> #to push image on dockerhub
+docker pull <imagename> #to pull image from dockerhub (if it is private image or repo so we wil have to login into dockerhub using docker login account)
