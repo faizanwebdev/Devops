@@ -28,3 +28,12 @@ without enable authentication it will give permission denied error
 
 #after enable authentication, by default behaviour will be to enter password everytime for connection making between server and host
 so we have to generate ssh key in server machine to make trustable connection with host machine by copying public key in host machine ssh folder
+
+For making connection from server machine to host machine we will ssh connection
+ssh username@IPaddress (example ssh ansible@171.41.32.1) #command for making ssh connection
+
+ssh key generation command below:
+ssh-keygen 
+
+After ssh key generation we have to copy public key from server machine to host machine using below command:
+ssh-copy-id username@IPaddress
