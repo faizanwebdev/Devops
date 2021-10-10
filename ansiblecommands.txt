@@ -1,0 +1,7 @@
+Ansible Installation(Installatio to be done on ansible server machine only and not on host machine)
+
+yum install wget -y #install wget package if it not there
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm #download epel package repository from internet
+yum install epel-release-latest-7.noarch.rpm -y #install the epel package
+yum update -y #update the OS for updating the packages and dependency files
+yum install git python python-pip python-devel openssl ansible -y #install these packages(ansible is main package and rest all other are dependency package for ansible as ansible is developed using python)
