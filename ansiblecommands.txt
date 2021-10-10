@@ -5,3 +5,19 @@ wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm #dow
 yum install epel-release-latest-7.noarch.rpm -y #install the epel package
 yum update -y #update the OS for updating the packages and dependency files
 yum install git python python-pip python-devel openssl ansible -y #install these packages(ansible is main package and rest all other are dependency package for ansible as ansible is developed using python)
+
+After installation, in /etc/ansible folder ansible config file and host file will be created
+Open the ansible.cfg file and uncomment inventory line and sudo user line and save the file
+Open the hosts file and add the host machines IP address or create the group and add host machines IP addresses
+
+#Linux Administration commands
+
+useradd <username> #command to add new user. NOTE: for ansible operations, the username of ansible server machine and ansible host machine should be same
+passwd <username> #to set password of the specific user
+
+#give root user privileges to ansible user on ansible server machine as well as on ansible host machine
+for giving root user privileges, linux system have sudoers files in which multiple user can work on that single file at onetime which can create a huge conflict
+so redhat company has created a new file called as visudo file for resolving this problem as only one user can work on this file at a time
+
+#open visudo file and add the ansible user inside it and give all root user privileges
+<ansible username> ALL=(ALL) NOPASSWD: ALL
