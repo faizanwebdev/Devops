@@ -21,3 +21,10 @@ so redhat company has created a new file called as visudo file for resolving thi
 
 #open visudo file and add the ansible user inside it and give all root user privileges
 <ansible username> ALL=(ALL) NOPASSWD: ALL
+
+#for creating ssh connection we have to first enable the password authentication to yes and permitrootlogin to yes with uncommenting
+inside the file /etc/ssh/sshd_confg in all machines that is server as well as host
+without enable authentication it will give permission denied error
+
+#after enable authentication, by default behaviour will be to enter password everytime for connection making between server and host
+so we have to generate ssh key in server machine to make trustable connection with host machine by copying public key in host machine ssh folder
