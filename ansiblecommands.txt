@@ -37,3 +37,19 @@ ssh-keygen
 
 After ssh key generation we have to copy public key from server machine to host machine using below command:
 ssh-copy-id username@IPaddress
+
+#ansible commands
+
+ansible --version #to check ansible version and information
+ansible all --list-hosts #to check all host connected to ansible server machine in ansible configuration file
+ansible <groupname> --list-hosts #to check all host connected of specific group  to ansible server machine
+ansible <groupname>[n:n] --list-hosts #to check host connected of specific group with index number to ansible server machine
+examples below:
+ansible webserver[0] --list-hosts
+ansible webserver[1] --list-hosts
+ansible webserver[-1] --list-hosts
+ansible webserver[0:2] --list-hosts
+ansible webserver[0]:dbserver[1] --list-hosts
+
+#ansible adhoc commands
+ 
