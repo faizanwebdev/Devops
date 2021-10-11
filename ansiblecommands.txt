@@ -1,4 +1,4 @@
-Ansible Installation(Installatio to be done on ansible server machine only and not on host machine)
+Ansible Installation(Installation to be done on ansible server machine only and not on host machine)
 
 yum install wget -y #install wget package if it not there
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm #download epel package repository from internet
@@ -52,4 +52,22 @@ ansible webserver[0:2] --list-hosts
 ansible webserver[0]:dbserver[1] --list-hosts
 
 #ansible adhoc commands
+ansible <groupname> -a "Normal linux commands" #where groupname can groupname or a single host or IP and -a is arbitary mode as arbitary command and under quotes can be any linux commands
+ansible ansiblehosts -a "ls -la"
+ansible ansiblehosts[0] -a "touch faizanfile"
+ansible ansiblehosts[1] -a "sudo yum install tree -y" #to install software as sudo user we have to enter sudo
+If we dont want to insert sudo before the linux commands then below is the command
+ansible ansiblehosts -b -a "yum install httpd -y" #where -b denotes become sudo user and -a is arbitary command
+ansible ansiblehosts -b -a "which httpd" or -a "sudo which httpd"
+ansible ansiblehost -b -a "yum remove httpd -y"
+
+#ansible single module commands
+ansible ansiblehosts -b -m yum -a "pkg=httpd state=present" #(this command will install httpd software as state as present)where b denotes to become root, -m denotes as module, yum is module, -a is arbitary command, pkg is package package or software name, state is state whether to install or update or remove software or stop or start or restart service
+ansible ansiblehosts -b -m yum -a "pkg=httpd state=latest" #this command will update the httpd software to latest version
+ansible ansiblehosts -b -m yum -a "pkg=httpd state=absent" #this command will remove or uninstall httpd software
+ansible ansiblehosts -b -m service -a "name=httpd state=started" #this command will start the httpd service, where service is module, -m denotes as module, name is service name, state is service state as started or restarted or stopped
+ansible ansiblehosts -b -m user -a "name=username state=present" #this command will create or add new user, where user is module
+ansible ansiblehosts -b -m yum -a "pkg=httpd" #this command will install httpd, here we have not mention state as by default state is to be install(present) for packages, for user by default state is to create(present) for user, for service by default state is to start(started), for file or folder by default state is to create(present)
+ansible ansiblehosts -b -m copy -a "src=(path with file) dest=(destination path)" #this command will copy file from server machine to host machines
+
  
