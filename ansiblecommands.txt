@@ -150,3 +150,118 @@ vi handle.yml
 		- name: start httpd service
 		  action: service name='{{pkgname}}' state=started
 		  ignore_errors: yes
+
+#ansible commands
+ansible-playbook <playbook file> --check #for dry run of commands to see what exactly it will do when it will be executed
+
+#loops in ansible
+below playbook will display the loops feature in ansible playbook
+
+vi loops1.yml
+---
+- hosts: ansiblehosts
+  user: ansible-user
+  become: yes
+  connection: ssh
+  tasks:
+	- name: creating multiple user
+	  action: user name='{{item}}' state=present
+	  with_items:
+		- Faizan
+		- Saqib
+		- Rehan
+
+	- name: installing multiple software
+	  action: yum name='{{item}}' state=present
+	  with_items:
+		- httpd
+		- tree
+		- git
+
+vi loops2.yml
+---
+- hosts: ansiblehosts
+  user: ansible-user
+  become: yes
+  connection: ssh
+  tasks:
+	- name: deleting multiple users
+	  action: user name='{{item}}' state=absent
+	  with_items:
+		- Faizan
+		- Saqib
+		- Rehan
+
+	- name: uninstalling multiple software
+	  action: yum name='{{item}}' state=absent
+	  with_items:
+		- httpd
+		- tree
+		- git
+
+Below playbook will display the conditional feature of ansbile playbook
+vi conditionals.yml #using adhoc command
+
+---
+- hosts: ansiblehosts
+  user: ansible-user
+  become: yes
+  connection: ssh
+  tasks:
+	- name: Installing apache for debian family
+	  command: apt-get install apache2 -y
+	  when: ansible_os_family == "Debian"
+
+	- name: Installing apache for redhat family
+	  command: yum install httpd -y
+	  when: ansible_os_family == "RedHat"
+
+vi conditionals1.yml #using module
+
+---
+- hosts: ansiblehosts
+  user: ansible-user
+  become: yes
+  connection: ssh
+  tasks:
+	- name: uninstalling apache for debian family
+	  action: apt-get name=apache2 state=absent
+	  when: ansible_os_family == "Debian"
+
+	- name: uninstalling apache for redhat family
+	  action: yum name=httpd state=absent
+	  when: ansible_os_family == "RedHat"
+
+#creating files on host machine using playbook
+vi files.yml
+
+---
+- hosts: ansiblehosts
+  user: ansible-user
+  become: yes
+  connection: ssh
+  tasks:
+	- name: create file using playbook
+	  file: path=/home/ansible-user/demofile1.txt state=file
+
+	- name: copying file from server machine to host machine using playbook
+	  copy: src=/home/ansible-user/faizanfile dest=/home/ansible-user
+
+#creating directory on host machine using playbook
+vi directory.yml
+
+---
+- hosts: ansiblehosts
+  user: ansible-user
+  become: yes
+  connection: ssh
+  tasks:
+	- name: creating directory using playbook
+	  file: path/home/ansible-user/faizandir state=directory
+
+#Vault concenpt in ansible (that is encrypting the playbook file and also add password protection to playbook file)
+ansible-vault create <playbook name> #for creating new playbook with vault
+ansible-vault edit <playbook name> #for editing vault playbook
+ansible-vault encrypt <playbook name> #for encrypting and vault the exisiting playbook
+ansible-vault decrypt <playbook name> #for decrypting the playbook
+ansible-vault rekey <playbook name> #for changing password of vault playbook
