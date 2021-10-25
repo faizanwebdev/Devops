@@ -44,6 +44,6 @@ docker rmi -f $(docker images -q) #to forcefully delete all images
 docker run -td --name <containername> -p (host port number for example 80):(container port number for example 80) <imagename> #to create non-interactive container with port (-p denote port, -d denotes daemon or detach). This command will automaticall start the container in background
 docker exec -it <noninteractive containername> /bin/bash #to get inside or to interact with noninteractive container
 docker login #to login into docker hub account
-docker tag <existing imagename> <dockerhubaccountname>/<imagename for dockerhub> #for reserving space for image to push on dockerhub
-docker push <dockerhubaccountname>/<imagename for dockerhub to be push> #to push image on dockerhub
+docker tag <existing imagename> <dockerhubaccountname>/<imagename for dockerhub>:<tagname> #for reserving space for image to push on dockerhub
+docker push <dockerhubaccountname>/<imagename for dockerhub to be push>:<tagname> #to push image on dockerhub
 docker pull <imagename> #to pull image from dockerhub (if it is private image or repo so we wil have to login into dockerhub using docker login account)
